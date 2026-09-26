@@ -66,7 +66,7 @@ function Services() {
           What I can offer
         </h2>
         <p className="section-text">
-          Realistic, current-stage services aligned with where I skills are
+          My current-stage services aligned with where my skills are
           today &mdash; not a claim of mastery over every technology listed.
         </p>
       </Reveal>

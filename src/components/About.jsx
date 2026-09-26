@@ -53,7 +53,7 @@ function About() {
           <h3 className="about__card-title">Fast Development with VS Code</h3>
           <p className="about__card-text">
             Visual Studio Code is my main development environment &mdash;
-            focused on efficient workflows, reusable components, extensions, and tools
+            focused on workflows, reusable components, extensions, and tools
             that help speed up development.
           </p>
         </Reveal>
