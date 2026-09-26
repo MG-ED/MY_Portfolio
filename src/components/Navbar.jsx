@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import Button from './Button'
+import ContactModal from './ContactModal'
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
@@ -12,6 +13,12 @@ const NAV_LINKS = [
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isContactOpen, setIsContactOpen] = useState(false)
+
+  function openContact() {
+    setIsOpen(false)
+    setIsContactOpen(true)
+  }
 
   // Close the mobile menu on Escape, and whenever the viewport grows
   // back to desktop width so it never gets stuck open.
@@ -31,6 +38,7 @@ function Navbar() {
   }, [])
 
   return (
+    <>
     <header className="navbar">
       <div className="navbar__inner">
         <a href="#home" className="navbar__logo">
@@ -57,12 +65,12 @@ function Navbar() {
             ))}
           </ul>
 
-          <Button href="#" variant="solid" className="navbar__cta navbar__cta--mobile">
+          <Button variant="solid" className="navbar__cta navbar__cta--mobile" onClick={openContact}>
             Contact me
           </Button>
         </nav>
 
-        <Button href="#" variant="solid" className="navbar__cta navbar__cta--desktop">
+        <Button variant="solid" className="navbar__cta navbar__cta--desktop" onClick={openContact}>
           Contact me
         </Button>
 
@@ -78,6 +86,8 @@ function Navbar() {
         </button>
       </div>
     </header>
+    <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+    </>
   )
 }
 

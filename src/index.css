@@ -1075,3 +1075,197 @@ p {
     padding: 60px 8%;
   }
 }
+/* =================================================================
+   Contact modal
+   ================================================================= */
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+  animation: fade-in 0.2s var(--ease-out) forwards;
+}
+
+.contact-modal__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 40px 32px 32px;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.8);
+  animation: fade-up 0.25s var(--ease-out) forwards;
+}
+
+/* "Soon" pill — sits left of the close button, vertically centered
+   with it rather than crowding the title. */
+.contact-modal__badge {
+  position: absolute;
+  top: 22px;
+  right: 56px;
+  background: rgba(255, 59, 48, 0.12);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 4px 10px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.contact-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  transition:
+    color 0.2s var(--ease-out),
+    background 0.2s var(--ease-out);
+}
+
+.contact-modal__close:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-modal__title {
+  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+}
+
+.contact-modal__subtitle {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.contact-modal__field {
+  margin-top: 20px;
+  border: none;
+  padding: 0;
+}
+
+.contact-modal__field label,
+.contact-modal__field legend {
+  display: block;
+  margin-bottom: 8px;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.contact-modal__field input[type='text'],
+.contact-modal__field input[type='email'] {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 12px 14px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s var(--ease-out);
+}
+
+.contact-modal__field input[type='text']:focus,
+.contact-modal__field input[type='email']:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.contact-modal__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.contact-modal__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.2s var(--ease-out),
+    color 0.2s var(--ease-out),
+    background 0.2s var(--ease-out);
+}
+
+.contact-modal__option:has(input:checked) {
+  border-color: var(--accent);
+  background: rgba(255, 59, 48, 0.12);
+  color: var(--text-primary);
+}
+
+.contact-modal__option input {
+  accent-color: var(--accent);
+}
+
+.contact-modal__error {
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.contact-modal__submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.contact-modal__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.contact-modal__success {
+  padding: 16px 0 8px;
+  text-align: center;
+}
+
+.contact-modal__success-text {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.contact-modal__success .btn {
+  margin-top: 24px;
+}
+
+@media (max-width: 480px) {
+  .contact-modal__dialog {
+    padding: 32px 22px 26px;
+  }
+}
