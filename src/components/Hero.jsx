@@ -13,9 +13,17 @@ function Hero() {
           Ideas into
         </h1>
 
-        <Button href="#" variant="solid" className="hero__cta">
-          More portfolio
-        </Button>
+        <div className="hero__text">
+
+        <p className="hero__cta">
+          FrontEnd Developer
+        </p>
+
+        <p className="hero__cta">
+          UI/UX Designer
+        </p>
+
+        </div>
       </div>
 
       <div className="hero__visual">

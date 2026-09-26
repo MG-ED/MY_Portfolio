@@ -30,7 +30,7 @@ function About() {
             ))}
           </ul>
           <p className="about__card-text">
-            Foundational technologies Edison understands and continues to improve.
+            Foundational technologies I understands and continues to improve.
           </p>
         </Reveal>
 
@@ -44,7 +44,7 @@ function About() {
             ))}
           </ul>
           <p className="about__card-text">
-            Technologies Edison is learning and using to expand his frontend
+            Technologies I am learning and using to expand my frontend
             development capabilities.
           </p>
         </Reveal>
@@ -52,7 +52,7 @@ function About() {
         <Reveal as="article" className="about__card" style={{ animationDelay: '0.12s' }}>
           <h3 className="about__card-title">Fast Development with VS Code</h3>
           <p className="about__card-text">
-            Visual Studio Code is Edison&rsquo;s main development environment &mdash;
+            Visual Studio Code is my main development environment &mdash;
             focused on efficient workflows, reusable components, extensions, and tools
             that help speed up development.
           </p>
@@ -68,7 +68,7 @@ function About() {
             ))}
           </ul>
           <p className="about__card-text">
-            Continuously learning new technologies and expanding development skills.
+            I am continuously learning new technologies and expanding my development skills.
           </p>
         </Reveal>
       </div>

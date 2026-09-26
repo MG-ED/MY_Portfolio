@@ -322,11 +322,31 @@ p {
   color: var(--accent);
 }
 
-.hero__cta {
+/* Row of role tags ("Frontend Developer", "UI/UX Designer") under
+   the title. .hero__text is the row; .hero__cta is each pill — solid
+   accent-red fill, matching the site's other solid CTA buttons. */
+.hero__text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
   margin-top: 30px;
-  align-self: flex-start;
   opacity: 0;
   animation: fade-up 0.7s 0.4s var(--ease-out) forwards;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 10px 18px;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* ---- Visual column: circular backdrop + circular portrait ----
@@ -806,6 +826,7 @@ p {
 }
 
 .service-card {
+  position: relative;
   background: var(--bg-primary);
   border: 1px solid var(--border-subtle);
   border-radius: 6px;
@@ -832,12 +853,35 @@ p {
   margin-bottom: 20px;
 }
 
+.service-card__head {
+  padding-right: 56px;
+}
+
 .service-card__title {
   color: var(--text-primary);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.2px;
   text-transform: uppercase;
+}
+
+/* "Soon" pill — sits in the card's top-right corner, clear of the
+   icon and title rather than inline in the text flow. */
+.service-card__badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 59, 48, 0.12);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 4px 10px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .service-card__list {

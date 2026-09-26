@@ -40,11 +40,13 @@ const SERVICES = [
   {
     icon: Gamepad2,
     title: 'Game Development',
+    soon: true,
     items: ['2D game development with Godot', 'Gameplay systems', 'UI implementation', 'Interactive experiences'],
   },
   {
     icon: Workflow,
     title: 'AI Automation',
+    soon: true,
     items: [
       'Workflow automation',
       'n8n workflows',
@@ -70,7 +72,7 @@ function Services() {
       </Reveal>
 
       <div className="services__grid">
-        {SERVICES.map(({ icon: Icon, title, items }, i) => (
+        {SERVICES.map(({ icon: Icon, title, items, soon }, i) => (
           <Reveal
             as="article"
             className="service-card"
@@ -80,7 +82,10 @@ function Services() {
             <div className="service-card__icon">
               <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
             </div>
-            <h3 className="service-card__title">{title}</h3>
+            <div className="service-card__head">
+              <h3 className="service-card__title">{title}</h3>
+              {soon && <span className="service-card__badge">Soon</span>}
+            </div>
             <ul className="service-card__list">
               {items.map((item) => (
                 <li key={item}>{item}</li>
