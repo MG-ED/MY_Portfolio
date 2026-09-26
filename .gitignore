@@ -1,4 +1,23 @@
-# Logs
+# ---- Dependencies ----
+node_modules
+.pnp
+.pnp.js
+
+# ---- Build output ----
+dist
+dist-ssr
+build
+*.local
+
+# ---- Environment / secrets (NEVER commit these) ----
+.env
+.env.*
+!.env.example
+
+# ---- Vercel ----
+.vercel
+
+# ---- Logs ----
 logs
 *.log
 npm-debug.log*
@@ -7,18 +26,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# ---- Editor / OS ----
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# ---- Testing / coverage ----
+coverage
+*.pem
