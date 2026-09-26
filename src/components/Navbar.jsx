@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import Button from './Button'
 
-const NAV_LINKS = ['Home', 'About', 'Services', 'Portfolio', 'Certificate']
+const NAV_LINKS = [
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Certificate', href: '#certificate' },
+]
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,10 +43,10 @@ function Navbar() {
           aria-label="Primary"
         >
           <ul className="navbar__links">
-            {NAV_LINKS.map((label) => (
+            {NAV_LINKS.map(({ label, href }) => (
               <li key={label}>
                 <a
-                  href={label === 'Home' ? '#home' : '#'}
+                  href={href}
                   className="navbar__link"
                   aria-current={label === 'Home' ? 'page' : undefined}
                   onClick={() => setIsOpen(false)}
