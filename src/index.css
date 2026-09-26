@@ -1,0 +1,651 @@
+/* =================================================================
+   Aperture — Photography Portfolio
+   Global styles. Organized by section; see the file tree in the
+   project README for where each component's markup lives.
+   ================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg-primary: #0b0b0b;
+  --bg-secondary: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #9a9a9a;
+  --accent: #ff3b30;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+
+  --font-sans: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --nav-height: 70px;
+  --edge-padding: 6%;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Shared keyframes ---------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================================================
+   Button (shared CTA / link)
+   ================================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.btn--solid {
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 13px 22px;
+  border-radius: 2px;
+  transition:
+    filter 0.2s var(--ease-out),
+    transform 0.2s var(--ease-out);
+}
+
+.btn--solid:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+.btn--solid:active {
+  transform: translateY(0);
+}
+
+.btn--link {
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.btn--link svg {
+  color: var(--accent);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.btn--link:hover svg {
+  transform: translateX(3px);
+}
+
+/* =================================================================
+   Navbar
+   ================================================================= */
+.navbar {
+  background: var(--bg-primary);
+  position: relative;
+  z-index: 50;
+}
+
+.navbar__inner {
+  height: var(--nav-height);
+  padding-inline: var(--edge-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  opacity: 0;
+  animation: fade-in 0.6s var(--ease-out) forwards;
+}
+
+.navbar__logo {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.navbar__logo-dot {
+  color: var(--accent);
+}
+
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar__link {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color 0.2s var(--ease-out);
+}
+
+.navbar__link:hover {
+  color: var(--text-primary);
+}
+
+.navbar__link[aria-current='page'] {
+  color: var(--text-primary);
+}
+
+.navbar__cta--mobile {
+  display: none;
+}
+
+.navbar__toggle {
+  display: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__cta--desktop {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: inline-flex;
+  }
+
+  .navbar__nav {
+    position: absolute;
+    inset-inline: 0;
+    top: var(--nav-height);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-subtle);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height 0.35s var(--ease-out),
+      opacity 0.25s var(--ease-out);
+  }
+
+  .navbar__nav.is-open {
+    max-height: 420px;
+    opacity: 1;
+  }
+
+  .navbar__links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px var(--edge-padding) 0;
+  }
+
+  .navbar__link {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .navbar__cta--mobile {
+    display: inline-flex;
+    justify-content: center;
+    margin: 18px var(--edge-padding) 22px;
+  }
+}
+
+/* =================================================================
+   Hero
+   ================================================================= */
+.hero {
+  background: var(--bg-primary);
+  display: grid;
+  grid-template-columns: 52% 48%;
+  min-height: 560px;
+}
+
+.hero__content {
+  grid-column: 1;
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 50px;
+  padding-inline: 11% 6%;
+}
+
+.hero__title {
+  color: var(--text-primary);
+  font-size: clamp(40px, 4.6vw, 66px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fade-up 0.7s 0.15s var(--ease-out) forwards;
+}
+
+.hero__title--highlight {
+  color: var(--accent);
+}
+
+.hero__cta {
+  margin-top: 30px;
+  align-self: flex-start;
+  opacity: 0;
+  animation: fade-up 0.7s 0.4s var(--ease-out) forwards;
+}
+
+/* ---- Visual column: circular backdrop + circular portrait ----
+   Everything below is sized off --portrait-size, a custom property on
+   .hero__visual, so the whole composition scales as one unit — only
+   --portrait-size (and the two floating elements' offsets) change in
+   the media queries below. */
+.hero__visual {
+  grid-column: 2;
+  order: 2;
+  position: relative;
+  height: clamp(560px, 64vh, 700px);
+  --portrait-size: clamp(230px, 27vw, 380px);
+}
+
+/* Large abstract shape behind the portrait — the same dark gray-to-
+   black gradient and soft light catch as the original parallelogram,
+   just circular now instead of angled. Sits centered a little behind
+   and larger than the portrait for a layered, halo-like depth. */
+.hero__bg-shape {
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--portrait-size) + 70px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(55% 45% at 30% 18%, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0) 60%),
+    linear-gradient(160deg, #2b2b2b 0%, #171717 38%, #070707 72%, #000000 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 40px 70px -30px rgba(0, 0, 0, 0.75);
+  opacity: 0;
+  animation: fade-in 1s 0.1s var(--ease-out) forwards;
+}
+
+/* Perfect circle holding the portrait. object-fit: cover fills the
+   circle cleanly (no distortion — the image just fills the frame the
+   way a profile photo naturally would); object-position keeps the
+   head fully in frame and crops toward the chest. */
+.hero__portrait {
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  width: var(--portrait-size);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1d1d1d 0%, #0a0a0a 65%, #000000 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 30px 55px -25px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  animation: fade-in 0.9s 0.3s var(--ease-out) forwards;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%;
+  filter: grayscale(55%) contrast(1.05) brightness(0.96);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.hero__portrait:hover .hero__image {
+  transform: scale(1.03);
+}
+
+.hero__portrait-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0) 22%,
+    rgba(0, 0, 0, 0) 54%,
+    rgba(0, 0, 0, 0.58) 80%,
+    rgba(0, 0, 0, 0.93) 100%
+  );
+  pointer-events: none;
+}
+
+.hero__portrait-name {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  width: 62%;
+  text-align: center;
+  color: var(--text-primary);
+  font-size: clamp(9px, 0.85vw, 12px);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+/* ---- Floating UI chips ----
+   Two small interface elements that float beside the circle, reusing
+   the existing fade-up entrance and easing so they read as part of
+   the same load sequence as the title and CTA rather than a new one. */
+.hero__bubble {
+  position: absolute;
+  top: 14%;
+  left: 0;
+  max-width: clamp(148px, 15vw, 202px);
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-radius: 20px;
+  padding: 14px 18px;
+  box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  animation: fade-up 0.7s 0.55s var(--ease-out) forwards;
+}
+
+.hero__bubble-text {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.1px;
+}
+
+.hero__bubble-tail {
+  position: absolute;
+  top: 50%;
+  right: -7px;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background: var(--text-primary);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.hero__badge {
+  position: absolute;
+  bottom: 16%;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 12px 20px 12px 14px;
+  box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  animation: fade-up 0.7s 0.7s var(--ease-out) forwards;
+}
+
+.hero__badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.hero__badge-text {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hero {
+    grid-template-columns: 55% 45%;
+  }
+
+  .hero__visual {
+    --portrait-size: clamp(190px, 24vw, 270px);
+  }
+
+  .hero__bubble {
+    top: 10%;
+    max-width: clamp(120px, 16vw, 160px);
+    padding: 11px 14px;
+  }
+
+  .hero__bubble-text {
+    font-size: 11px;
+  }
+
+  .hero__badge {
+    bottom: 12%;
+    padding: 9px 16px 9px 11px;
+  }
+
+  .hero__badge-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hero__badge-text {
+    font-size: 10.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .hero__visual {
+    grid-column: 1;
+    order: -1;
+    height: 420px;
+    --portrait-size: clamp(170px, 46vw, 230px);
+  }
+
+  .hero__content {
+    grid-column: 1;
+    order: 1;
+    padding: 44px 8% 50px;
+  }
+
+  .hero__title {
+    font-size: clamp(36px, 9vw, 46px);
+  }
+
+  .hero__bg-shape,
+  .hero__portrait {
+    left: 50%;
+  }
+
+  .hero__bubble {
+    top: 2%;
+    left: 4%;
+    max-width: 152px;
+    padding: 10px 14px;
+  }
+
+  .hero__bubble-text {
+    font-size: 11.5px;
+  }
+
+  .hero__bubble-tail {
+    top: auto;
+    right: auto;
+    bottom: -6px;
+    left: 22px;
+    transform: rotate(90deg);
+  }
+
+  .hero__badge {
+    bottom: 2%;
+    right: 4%;
+    padding: 8px 14px 8px 10px;
+  }
+
+  .hero__badge-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hero__badge-text {
+    font-size: 10px;
+  }
+}
+
+/* =================================================================
+   Experience section
+   ================================================================= */
+.experience {
+  background: var(--bg-secondary);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 40px;
+  padding: 80px 12%;
+}
+
+.experience__title {
+  color: var(--text-primary);
+  font-size: clamp(28px, 2.4vw, 34px);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.experience__col--body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.experience__text {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 400px;
+}
+
+.experience__link {
+  margin-top: 22px;
+}
+
+@media (max-width: 768px) {
+  .experience {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 60px 8%;
+  }
+}
